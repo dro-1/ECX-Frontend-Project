@@ -75,6 +75,11 @@ function handleClick(e){
     console.log(emptySpaces)
     const otherClass =  oTurn ? X_CLASS : O_CLASS
     placeMark(emptySpaces[0], otherClass)
+    if(checkWin(otherClass)){
+      setBoardHoverClass()
+      endGame(false)
+      return
+    }
     // minimax(cellElements, player)
 
     
@@ -105,7 +110,7 @@ function setBoardHoverClass(){
     board.classList.add(X_CLASS)
   }
 } 
-function checkWin(currentClass){
+function checkWin(currentclass){
   return WINNING_COMBINATIONS.some(combination => {
     return combination.every(index => {
       return cellElements[index].classList.contains(currentClass)
