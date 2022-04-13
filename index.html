@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic Tac Toe</title>
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="./options.js"></script>
+  <script defer src="./script.js"></script>
+</head>
+
+<body>
+  <nav>
+    <div class="navbar">
+      <header>Tic Tac Toe</header>
+    </div>
+    <div class="button-container">
+      <input type="checkbox" name="dark-mode" id="toggle" checked>
+      <label for="toggle"></label>
+      <span>Theme</span>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="content">
+      <h1><span>Bored?</span><br> Play a game of <span class="title">Tic Tac Toe</span> with <span>your friends</span>
+        or against <span>computer</span></h1>
+      <p>and guess what? against computer, you get to choose your difficulty.</p>
+    </div>
+    <div class="game-container">
+      <div class="welcome-screen">
+        <h1>Play Here</h1>
+        <div class="first-screen show">
+          <h2>Pick your<br>Opponent</h2>
+          <div class="option-layout">
+            <button id="computer-button" class="computer-button">Computer</button>
+            <button id="friend-button" class="friend-button ">A Friend</button>
+          </div>
+          <button class="next-buttton" id="next-button">Next =></button>
+        </div>
+        <div class="second-screen">
+          <h2>Pick your<br>Shape</h2>
+          <div class="option-layout">
+            <button id="x-button" class="x-button">X</button>
+            <button id="o-button" class="o-button">O</button>
+          </div>
+          <button class="play-buttton" id="play-button">Play</button>
+        </div>
+        <div class="game-board x" id="game-board">
+          <div class="cell" data-cell></div>
+          <div class="cell" data-cell></div>
+          <div class="cell" data-cell></div>
+          <div class="cell" data-cell></div>
+          <div class="cell" data-cell></div>
+          <div class="cell" data-cell></div>
+          <div class="cell" data-cell></div>
+          <div class="cell" data-cell></div>
+          <div class="cell" data-cell></div>
+          <div class="winning-message blurred-container" id="winning-message">
+            <div data-winning-text-element>X wins</div>
+            <button id="restart-button">Restart</button>
+            <button id="menu-button">Menu</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,301 @@
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+:root {
+	--cell-size:120px;
+	--mark-size: calc(var(--cell-size) * 0.8);
+	--bg-color: #020024;
+	--main-text-color: white;
+	--subtle-main-text-color: rgb(233, 233, 233);
+	--highlight-text-color: aquamarine;
+	--light-borders-color: rgba(255, 255, 255, 0.5);
+	--game-border-color: rgba(255, 255, 255, 0.603);
+	--game-hover-color: rgba(127, 255, 212, 0.2);
+}
+body {
+	margin: 0;
+	background-color: var(--bg-color);
+	font-family: sans-serif;
+	z-index: -10;
+}
+nav {
+	display: flex;
+	position: relative;
+	justify-content: center;
+	align-items: center;
+	border-bottom: 1px solid var(--light-borders-color);
+}
+nav .navbar {
+	max-width: 60%;
+	color: var(--main-text-color);
+	font-size: 1.2rem;
+	padding: 1em;
+	display: flex;
+}
+nav .button-container {
+	display: flex;
+	position: absolute;
+	right: 30px;
+	width: 15%;
+	justify-content: space-around;
+}
+nav input[type="checkbox"] {
+	visibility: hidden;
+}
+nav input[type="checkbox"]:checked + label {
+	transform: rotate(360deg);
+	background-color: #000;
+	border: 1px solid rgba(255, 255, 255, 0.5);
+}
+nav input[type="checkbox"]:checked + label:before {
+	background-color: white;
+	transform: translateX(20px);
+}
+label {
+	display: flex;
+	width: 45px;
+	height: 24px;
+	border: 1px solid white;
+	border-radius: 99em;
+	position: relative;
+	transition: transform 0.75s ease-in-out;
+	transform-origin: 50% 50%;
+	cursor: pointer;
+}
+label::before {
+	transition: transform 0.75s ease 0.5s;
+	content: "";
+	display: block;
+	position: absolute;
+	width: 18px;
+	height: 18px;
+	background-color: rgb(233, 233, 233);
+	border-radius: 50%;
+	top: 2px;
+	left: 2px;
+}
+nav span {
+	color: var(--main-text-color);
+}
+.container {
+	display: flex;
+	height: calc(100vh - 61.4px);
+	justify-content:space-evenly;
+	align-items: center;
+}
+.content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	color: var(--main-text-color);
+	max-width: 35%;
+	margin-left: 2em;
+}
+.content span {
+	color: var(--highlight-text-color);
+}
+.content .title {
+	font-size: 3rem;
+}
+.show {
+	display: flex;
+}
+.game-container {
+	max-width: 800px;
+	width: 30%;
+	min-width: 400px;
+	height: 90%;
+	margin: 0;
+	position: relative;
+	display: flex;
+  filter: blur(10px);
+	filter: drop-shadow(-10px 15px 10px rgba(0, 0, 0, 0.623));
+}
+.welcome-screen {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+
+}
+.welcome-screen h1 {
+	color: aquamarine;
+  width: fit-content;
+  align-self: center;
+	padding: .5em;
+  text-align: center;
+	border-bottom: 1px solid rgba(255, 255, 190, 0.8);
+  margin: 0;
+}
+.second-screen,
+.first-screen,
+.game-board {
+	display: none;
+}
+.first-screen.show,
+.second-screen.show{
+	width: 100%;
+  height: calc(100% - 72px);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+  border: 1px solid rgb(165, 165, 165);
+  border-top: none;
+}
+
+.first-screen h2,
+.second-screen h2 {
+	font-size: 2rem;
+	color: rgb(199, 199, 199);
+	margin-bottom: 2em;
+}
+.first-screen .option-layout,
+.second-screen .option-layout {
+	display: flex;
+	width: 80%;
+	justify-content: space-around;
+	margin: 0 0 4em 0;
+}
+.first-screen button,
+.second-screen button {
+	padding: 0.5em 1em;
+  width: 30%;
+	color: #fff;
+	background-color: #070929;
+	border-radius: 0.5em;
+	transition: transform 250ms ease-in-out;
+	cursor: pointer;
+  border: 1px solid rgb(102, 102, 102);
+}
+.first-screen button:hover,
+.second-screen button:hover {
+	transform: scale(1.2);
+}
+.active {
+	color: black !important;
+	background-color: rgb(182, 182, 182) !important;
+  font-weight: bold
+}
+
+.game-board.show {
+	flex-basis: 90%;
+	width: 100%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  align-content: center;
+  grid-template-columns: repeat(3, auto);
+}
+
+.cell{
+  height:  var(--cell-size);
+  width:  var(--cell-size);
+  border: 1px solid var(--game-border-color);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3){
+  border-top: 0;
+}
+.cell:nth-child(3n+1){
+  border-left: 0;
+}
+.cell:nth-child(3n+3){
+  border-right: 0;
+}
+
+.cell:nth-child(9),
+.cell:nth-child(7),
+.cell:nth-child(8){
+  border-bottom: 0;
+}
+.cell.x,
+.cell.o{
+  cursor: not-allowed;
+}
+.cell.x::before,
+.cell.x::after,
+.game-board.x .cell:not(.x):not(.o):hover::before,
+.game-board.x .cell:not(.x):not(.o):hover::after{
+  content: "";
+  position: absolute;
+  height: var(--mark-size);
+  width: 5px;
+  background-color: var(--game-hover-color);
+}
+.cell.x::before,
+.cell.x::after{
+  background-color: var(--highlight-text-color);
+}
+.cell.x::before,
+.game-board.x .cell:not(.x):not(.o):hover::before{
+  transform: rotate(45deg);
+}
+.cell.x::after,
+.game-board.x .cell:not(.x):not(.o):hover::after{
+  transform: rotate(-45deg);
+}
+.cell.o::before,
+.cell.o::after,
+.game-board.o .cell:not(.x):not(.o):hover::before,
+.game-board.o .cell:not(.x):not(.o):hover::after{
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+.cell::before,
+.game-board.o .cell:not(.x):not(.o):hover::before{
+  height: var(--mark-size);
+  width: var(--mark-size);
+  background-color: var(--game-hover-color);
+}
+.cell.o::before,
+.cell.o::after{
+  background-color: var(--highlight-text-color);
+}
+.cell.o::after,
+.game-board.o .cell:not(.x):not(.o):hover::after{
+  background-color: var(--bg-color);
+  height: calc(var(--mark-size) * .9);
+  width: calc(var(--mark-size) * .9);
+}
+
+
+.winning-message {
+	position: absolute;
+	inset: 0;
+	display: none;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(48, 48, 48, 0.5);
+	color: var(--main-text-color);
+	font-size: 4rem;
+	backdrop-filter: blur(5px);
+}
+.winning-message button {
+	font-size: 2rem;
+	background-color: rgb(192, 192, 192);
+	border: none;
+	margin-top: 0.3em;
+	border-radius: 0.5em;
+	padding: 0.5em 1em;
+	cursor: pointer;
+	transition: transform 0.1s ease-in-out;
+}
+.winning-message button:hover {
+	transform: scale(0.9);
+	background-color: rgb(150, 150, 150);
+}
+.winning-message.show {
+	display: flex;
+}
