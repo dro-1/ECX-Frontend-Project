@@ -1,5 +1,3 @@
-const root = document.documentElement;
-const checkbox = document.getElementById('toggle');
 const X_CLASS = 'x'
 const O_CLASS = 'o'
 const WINNING_COMBINATIONS = [
@@ -49,10 +47,10 @@ function handleClick(e){
   if(opponent === "Friend"){
       // check for win or draw
     if(checkWin(currentClass)){
-      endGame(false)
+      endGame(false,currentClass)
     }
     else if(isDraw()){
-      endGame(true)
+      endGame(true,currentClass)
     }
     else{
       // switchturns
@@ -77,7 +75,7 @@ function handleClick(e){
     placeMark(emptySpaces[0], otherClass)
     if(checkWin(otherClass)){
       setBoardHoverClass()
-      endGame(false)
+      endGame(false,otherClass)
       return
     }
     // minimax(cellElements, player)
@@ -110,10 +108,10 @@ function setBoardHoverClass(){
     board.classList.add(X_CLASS)
   }
 } 
-function checkWin(currentclass){
+function checkWin(playerClass){
   return WINNING_COMBINATIONS.some(combination => {
     return combination.every(index => {
-      return cellElements[index].classList.contains(currentClass)
+      return cellElements[index].classList.contains(playerClass)
     })
   })
 }
@@ -122,12 +120,22 @@ function isDraw(){
     return cell.classList.contains(X_CLASS) || cell.classList.contains(O_CLASS)
   })
 }
-function endGame(draw){
-  if(draw){
-    winningMessageTextElement.innerText = "Draw!"
+function endGame(draw,playerClass,currentClass){
+  if(playerClass === currentClass){
+    if(draw){
+      winningMessageTextElement.innerText = "Draw!"
+    }
+    else{
+      winningMessageTextElement.innerText = `${oTurn ? "O's" : "X's"} Win!`
+    }
   }
-  else{
-    winningMessageTextElement.innerText = `${oTurn ? "O's" : "X's"} Win!`
+  else if(playerClass !== currentClass){
+    if(draw){
+      winningMessageTextElement.innerText = "Draw!"
+    }
+    else{
+      winningMessageTextElement.innerText = `${oTurn ? "X's" : "O's"} Win!`
+    }
   }
   winningMessageElement.classList.add('show')
 }

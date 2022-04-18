@@ -65,12 +65,19 @@ menuBtn.addEventListener('click', () => {
   player.you = ""
   resetButtonColor(computerBtn,friendBtn)
   resetButtonColor(xBtn,oBtn)
+  removeActiveClasses(computerBtn,friendBtn,oBtn,xBtn)
 })
 
 
 function switchActive(off,on){
   off.classList.remove("active")
   on.classList.add("active")
+}
+function removeActiveClasses(a,b,c,d){
+  a.classList.remove("active")
+  b.classList.remove("active")
+  c.classList.remove("active")
+  d.classList.remove("active")
 }
 function resetButtonColor(x,y) {
   x.style.backgroundColor = "#070929"

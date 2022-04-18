@@ -6,13 +6,16 @@
 :root {
 	--cell-size:120px;
 	--mark-size: calc(var(--cell-size) * 0.8);
-	--bg-color: #020024;
-	--main-text-color: white;
-	--subtle-main-text-color: rgb(233, 233, 233);
-	--highlight-text-color: aquamarine;
-	--light-borders-color: rgba(255, 255, 255, 0.5);
-	--game-border-color: rgba(255, 255, 255, 0.603);
-	--game-hover-color: rgba(127, 255, 212, 0.2);
+  --theme-color:243;
+  --opposing-color: 100%;
+  --hover-color: 160;
+  --highlight: 160;
+	--bg-color: hsl(var(--theme-color),100%,7%);
+	--main-text-color: hsl(0, 0%, var(--opposing-color));
+	--highlight-text-color: hsl(var(--highlight), 100%, 75%);
+	--light-borders-color: hsla(0, 0%, var(--opposing-color), 0.5);
+	--game-border-color: hsla(0, 0%, var(--opposing-color), 0.603);
+	--game-hover-color:	hsla(var(--hover-color), 100%, 75%, 0.2);
 }
 body {
 	margin: 0;
@@ -121,7 +124,7 @@ nav span {
 
 }
 .welcome-screen h1 {
-	color: aquamarine;
+	color: var(--highlight-text-color);
   width: fit-content;
   align-self: center;
 	padding: .5em;
@@ -149,7 +152,7 @@ nav span {
 .first-screen h2,
 .second-screen h2 {
 	font-size: 2rem;
-	color: rgb(199, 199, 199);
+	color: var(--main-text-color);
 	margin-bottom: 2em;
 }
 .first-screen .option-layout,
@@ -268,7 +271,6 @@ nav span {
   height: calc(var(--mark-size) * .9);
   width: calc(var(--mark-size) * .9);
 }
-
 
 .winning-message {
 	position: absolute;
