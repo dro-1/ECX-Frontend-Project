@@ -121,7 +121,7 @@ nav span {
 	inset: 0;
 	display: flex;
 	flex-direction: column;
-
+	
 }
 .welcome-screen h1 {
 	color: var(--highlight-text-color);
